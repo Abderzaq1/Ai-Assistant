@@ -1,0 +1,74 @@
+Q: What is a bank?
+A: A bank is a financial institution that offers services like saving money, loans, and money transfers.
+
+Q: What is the difference between a commercial bank and an Islamic bank?
+A: A commercial bank operates on interest-based systems, while an Islamic bank follows Sharia law and avoids interest.
+
+Q: What is a checking account?
+A: A checking account is a bank account used for daily transactions such as deposits, withdrawals, and bill payments.
+
+Q: What is a savings account?
+A: A savings account is designed to save money over time and usually earns interest.
+
+Q: What is the difference between a checking and a savings account?
+A: A checking account is for frequent transactions, while a savings account is meant for saving and earns interest.
+
+Q: What is an IBAN?
+A: An IBAN is an international bank account number used for accurate identification in international transfers.
+
+Q: What is a SWIFT code?
+A: A SWIFT code identifies a specific bank in international money transfers.
+
+Q: What is the difference between a credit card and a debit card?
+A: A credit card provides borrowed funds, while a debit card uses money directly from your account.
+
+Q: What is a CVV?
+A: CVV is a 3-digit security code on the back of your card used for online transactions.
+
+Q: How can I open a bank account?
+A: You can open an account by visiting a bank branch with valid ID and address proof.
+
+Q: How can I receive a money transfer?
+A: You can receive it through a bank, or services like Western Union or MoneyGram.
+
+Q: What are online banking services?
+A: They include checking balances, transferring money, paying bills, and managing cards.
+
+Q: How can I activate a new debit card?
+A: You can activate it through the bank’s app, ATM, or customer service.
+
+Q: What is a bank loan?
+A: A bank loan is a borrowed sum of money to be repaid with interest over time.
+
+Q: How do I repay a loan?
+A: Loans are repaid through scheduled monthly payments either automatically or manually.
+
+Q: What should I do if I lose my bank card?
+A: Report it to your bank immediately to block the card and request a replacement.
+
+Q: What is the daily ATM withdrawal limit?
+A: It varies by bank but typically ranges from $200 to $500 per day.
+
+Q: What is bank interest?
+A: Interest is a percentage charged on loans or paid on savings by the bank.
+
+Q: Can I open a bank account without a job?
+A: Yes, many banks allow account opening with ID and address proof only.
+
+Q: How can I protect my bank account from fraud?
+A: Use strong passwords, enable two-factor authentication, and never share personal info.
+
+Q: Can I use my debit card abroad?
+A: Yes, if international use is enabled. Additional fees may apply.
+
+Q: What are monthly maintenance fees for a bank account?
+A: Fees vary by bank and account type. Some accounts may have no fees.
+
+Q: What is a bank statement?
+A: A bank statement is a document showing all transactions for a specific time period.
+
+Q: Can I change the phone number linked to my bank account?
+A: Yes, you can update it through the bank’s app or by visiting a branch.
+
+Q: What is the minimum balance for a savings account?
+A: The minimum balance for a standard savings account is $100.

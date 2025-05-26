@@ -1,0 +1,269 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard - YCB AI Assistant{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <h1 class="mb-4">Welcome, {{ current_user.username }}!</h1>
+    
+    <!-- Overview cards -->
+    <div class="row mb-4">
+        <div class="col-md-4 mb-3">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center me-3" style="width: 48px; height: 48px;">
+                            <i class="fas fa-comments fa-lg text-white"></i>
+                        </div>
+                        <h5 class="card-title mb-0">Your Conversations</h5>
+                    </div>
+                    <p class="card-text" id="conversation-count">Loading...</p>
+                    <a href="{{ url_for('chat.chat_page') }}" class="btn btn-primary">
+                        <i class="fas fa-comments me-2"></i>Start Chatting
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="rounded-circle bg-success d-flex align-items-center justify-content-center me-3" style="width: 48px; height: 48px;">
+                            <i class="fas fa-brain fa-lg text-white"></i>
+                        </div>
+                        <h5 class="card-title mb-0">Training Data</h5>
+                    </div>
+                    <p class="card-text" id="training-count">Loading...</p>
+                    <a href="{{ url_for('training.training_page') }}" class="btn btn-success">
+                        <i class="fas fa-plus me-2"></i>Add Training Data
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="rounded-circle bg-info d-flex align-items-center justify-content-center me-3" style="width: 48px; height: 48px;">
+                            <i class="fas fa-file-upload fa-lg text-white"></i>
+                        </div>
+                        <h5 class="card-title mb-0">Uploaded Files</h5>
+                    </div>
+                    <p class="card-text" id="files-count">Loading...</p>
+                    <a href="{{ url_for('training.training_page') }}#file-upload" class="btn btn-info">
+                        <i class="fas fa-upload me-2"></i>Upload Files
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Recent conversations -->
+    <div class="card mb-4">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Recent Conversations</h5>
+            <a href="{{ url_for('chat.chat_page') }}" class="btn btn-sm btn-primary">
+                <i class="fas fa-plus me-1"></i>New Chat
+            </a>
+        </div>
+        <div class="card-body">
+            <div id="recent-conversations">
+                <div class="text-center py-4">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="mt-2">Loading conversations...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Quick training and tips -->
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h5 class="mb-0">Quick Training</h5>
+                </div>
+                <div class="card-body">
+                    <form id="quick-training-form">
+                        <div class="mb-3">
+                            <label for="quick-question" class="form-label">Question</label>
+                            <input type="text" class="form-control" id="quick-question" placeholder="Enter a banking question">
+                        </div>
+                        <div class="mb-3">
+                            <label for="quick-answer" class="form-label">Answer</label>
+                            <textarea class="form-control" id="quick-answer" rows="3" placeholder="Enter the answer to the question"></textarea>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-success">
+                                <i class="fas fa-save me-2"></i>Save Training Data
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h5 class="mb-0">Tips & Features</h5>
+                </div>
+                <div class="card-body">
+                    <div class="list-group">
+                        <a href="{{ url_for('chat.chat_page') }}" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1"><i class="fas fa-comments text-primary me-2"></i>Chat Management</h6>
+                            </div>
+                            <p class="mb-1">Create, rename, and delete conversations.</p>
+                        </a>
+                        <a href="{{ url_for('training.training_page') }}" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1"><i class="fas fa-brain text-success me-2"></i>Training</h6>
+                            </div>
+                            <p class="mb-1">Train the AI with custom questions and answers.</p>
+                        </a>
+                        <a href="{{ url_for('training.data_page') }}" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1"><i class="fas fa-database text-info me-2"></i>Data Management</h6>
+                            </div>
+                            <p class="mb-1">View, edit, and delete your training data.</p>
+                        </a>
+                        <a href="{{ url_for('auth.settings') }}" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1"><i class="fas fa-cog text-secondary me-2"></i>Settings</h6>
+                            </div>
+                            <p class="mb-1">Update your profile and password.</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Load conversation count
+    fetch('/api/conversations')
+    .then(response => response.json())
+    .then(data => {
+        const count = data.length;
+        document.getElementById('conversation-count').textContent = `You have ${count} conversation${count !== 1 ? 's' : ''}.`;
+        
+        // Also update recent conversations
+        const recentConversationsEl = document.getElementById('recent-conversations');
+        
+        if (count === 0) {
+            recentConversationsEl.innerHTML = `
+                <div class="text-center py-4">
+                    <i class="fas fa-comments fa-3x text-muted mb-3"></i>
+                    <p>No conversations yet.</p>
+                    <a href="{{ url_for('chat.chat_page') }}" class="btn btn-primary">Start your first conversation</a>
+                </div>
+            `;
+            return;
+        }
+        
+        // Show up to 5 most recent conversations
+        const recentData = data.slice(0, 5);
+        
+        recentConversationsEl.innerHTML = `
+            <div class="list-group">
+                ${recentData.map(conv => `
+                    <a href="/chat?id=${conv.id}" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-1">${escapeHtml(conv.title)}</h6>
+                            <small>${formatDate(conv.updated_at)}</small>
+                        </div>
+                        <p class="mb-1 text-muted small">${conv.message_count} message${conv.message_count !== 1 ? 's' : ''}</p>
+                    </a>
+                `).join('')}
+            </div>
+            ${count > 5 ? `<div class="text-center mt-3"><a href="{{ url_for('chat.chat_page') }}" class="btn btn-sm btn-outline-primary">View all conversations</a></div>` : ''}
+        `;
+    })
+    .catch(error => {
+        console.error('Error fetching conversations:', error);
+        document.getElementById('conversation-count').textContent = 'Error loading conversations.';
+    });
+    
+    // Load training data count
+    fetch('/api/training/data')
+    .then(response => response.json())
+    .then(data => {
+        const count = data.length;
+        document.getElementById('training-count').textContent = `You have ${count} training data entr${count !== 1 ? 'ies' : 'y'}.`;
+    })
+    .catch(error => {
+        console.error('Error fetching training data:', error);
+        document.getElementById('training-count').textContent = 'Error loading training data.';
+    });
+    
+    // Load files count
+    fetch('/api/training/files')
+    .then(response => response.json())
+    .then(data => {
+        const count = data.length;
+        document.getElementById('files-count').textContent = `You have uploaded ${count} file${count !== 1 ? 's' : ''}.`;
+    })
+    .catch(error => {
+        console.error('Error fetching files:', error);
+        document.getElementById('files-count').textContent = 'Error loading files.';
+    });
+    
+    // Handle quick training form submission
+    const quickTrainingForm = document.getElementById('quick-training-form');
+    if (quickTrainingForm) {
+        quickTrainingForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const question = document.getElementById('quick-question').value.trim();
+            const answer = document.getElementById('quick-answer').value.trim();
+            
+            if (!question || !answer) {
+                showAlert('Both question and answer are required.', 'warning');
+                return;
+            }
+            
+            // Send to server
+            fetch('/api/training/manual', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ question, answer })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to add training data');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Clear form
+                document.getElementById('quick-question').value = '';
+                document.getElementById('quick-answer').value = '';
+                
+                // Show success message
+                showAlert('Training data added successfully!', 'success');
+                
+                // Update training count
+                fetch('/api/training/data')
+                .then(response => response.json())
+                .then(data => {
+                    const count = data.length;
+                    document.getElementById('training-count').textContent = `You have ${count} training data entr${count !== 1 ? 'ies' : 'y'}.`;
+                });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showAlert('Failed to add training data. Please try again.', 'danger');
+            });
+        });
+    }
+});
+</script>
+{% endblock %}
